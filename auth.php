@@ -11,12 +11,14 @@ $password = md5($password . "dsdsf3223");
 $result = $mysql->query("SELECT * FROM `users` WHERE `login` = '$login' AND `pass` = '$password'");
 // получим все соответсвующие записи из БД (в формате объекта)
 
-$user = $result->fetch_assoc();
-if (count($user) == 0) {
+$user = $result->fetch_assoc();   // конвертируем в ассоц массив
+if (count((array)$user) == 0) {
   echo "Такой пользователь не найден";
   exit();
 }
 
+setcookie('user', $user['name'], time() + 3600, "/");   // символ / значит типо на всех страницах работает
+
 $mysql->close();
 
-header('Location: account.html');
+header('Location: index.php');

@@ -10,8 +10,8 @@ if (mb_strlen($login) < 5 || mb_strlen($login) > 90) {
 } else if (mb_strlen($name) < 3 || mb_strlen($name) > 50) {
   echo "Недопустимая длина имени";
   exit();
-} else if (mb_strlen($name) < 2 || mb_strlen($name) > 6) {
-  echo "Недопустимая длина пароля (от до 6 символов)";
+} else if (mb_strlen($password) < 2 || mb_strlen($password) > 10) {
+  echo "Недопустимая длина пароля (от 2 до 10 символов)";
   exit();
 }
 
@@ -24,4 +24,4 @@ $mysql->query("INSERT INTO `users` (`login`, `pass`, `name`) VALUES ('$login', '
 
 $mysql->close();
 
-header('Location: index.html');
+header('Location: index.php');
